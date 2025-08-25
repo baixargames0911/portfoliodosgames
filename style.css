@@ -101,6 +101,88 @@ body {
     padding-bottom: 5px;
 }
 
+/* Estilos do Modal */
+.modal {
+    display: none; /* Esconde o modal por padrão */
+    position: fixed;
+    z-index: 10; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #333;
+    color: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #555;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.adsense-ad-placeholder {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 8px;
+    min-height: 150px; /* Garante um espaço para o anúncio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.download-button-modal {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.download-button-modal:hover {
+    background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
 .game-row {
     display: flex;
     flex-wrap: wrap;

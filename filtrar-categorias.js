@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="game-info">
                     <h3>${game.title}</h3>
                     <p>${game.description}</p>
-                    <span class="status-online">Online</span>
                 </div>
             </a>
         `;
@@ -27,6 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const gameCardsHtml = gamesArray.map(createGameCard).join('');
         return `
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631122850076679"
+     crossorigin="anonymous"></script>
+<!-- Pre modal -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2631122850076679"
+     data-ad-slot="8052252317"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
             <h2 class="section-title">${title}</h2>
             <div class="game-row">${gameCardsHtml}</div>
         `;
