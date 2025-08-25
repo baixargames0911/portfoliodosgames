@@ -16,7 +16,7 @@ const games = [
         image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1888930/capsule_616x353.jpg?t=1750959031',
         description: 'Vinte anos após uma pandemia devastar a civilização, um sobrevivente endurecido é contratado para contrabandear uma garota de 14 anos.',
         requirements: ['Sistema Operacional: Windows 10 (64-bit)', 'Processador: AMD Ryzen 5 1500X', 'Memória RAM: 16 GB', 'Placa de Vídeo: AMD Radeon RX 480 (8 GB)', 'Espaço em Disco: 100 GB SSD'],
-        downloadLink: 'https://example.com/download/the-last-of-us-1',
+        downloadLink: 'https://drive.google.com/file/d/1h0fcT3JQBnscFlWXU-x3RAoFsEp3eN4T/view?usp=sharing',
         categories: ['acao', 'aventura']
     },
     {
@@ -25,7 +25,7 @@ const games = [
         image: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2531310/94b5d8b3165a6fe592e406054b08a2dd24e2f848/capsule_616x353.jpg?t=1750959180',
         description: 'Cinco anos após a perigosa jornada, Ellie e Joel se estabeleceram em Jackson, Wyoming. No entanto, um evento violento perturba essa tranquilidade.',
         requirements: ['Sistema Operacional: Windows 10 (64-bit)', 'Processador: AMD Ryzen 7 2700X', 'Memória RAM: 16 GB', 'Placa de Vídeo: AMD Radeon RX 5800 XT', 'Espaço em Disco: 100 GB SSD'],
-        downloadLink: 'https://example.com/download/the-last-of-us-2',
+        downloadLink: 'https://drive.google.com/file/d/1dD3MLKq_6lvB1hJGsqLk0gW0XCmU2LDC/view?usp=sharing',
         categories: ['acao', 'aventura'],
         isNew: true
     },
@@ -35,7 +35,7 @@ const games = [
         image: 'https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg',
         description: 'Uma história épica de honra e lealdade em um dos mundos abertos mais vastos e detalhados já criados. Acompanhe Arthur Morgan e a gangue de Van der Linde.',
         requirements: ['Sistema Operacional: Windows 7 SP1 ou superior', 'Processador: Intel Core i5-2500K', 'Memória RAM: 8 GB', 'Placa de Vídeo: NVIDIA GeForce GTX 770 2GB', 'Espaço em Disco: 150 GB'],
-        downloadLink: 'https://example.com/download/red-dead-redemption-2',
+        downloadLink: 'https://drive.google.com/file/d/1FpjusRzpvJoTz01teYO_4p7FtGTwZC0n/view?usp=sharing',
         categories: ['acao', 'rpg'],
         isFeatured: true
     },
@@ -45,7 +45,7 @@ const games = [
         image: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1326470/capsule_616x353.jpg?t=1708624856',
         description: 'Você foi enviado para uma ilha remota para encontrar um bilionário desaparecido, mas o que encontra é um inferno infestado de canibais.',
         requirements: ['Sistema Operacional: Windows 10 (64-bit)', 'Processador: Intel Core i5-8400', 'Memória RAM: 12 GB', 'Placa de Vídeo: NVIDIA GeForce GTX 1060 3GB', 'Espaço em Disco: 20 GB'],
-        downloadLink: 'https://example.com/download/sons-of-the-forest',
+        downloadLink: 'https://pixeldrain.com/u/Ht1CoRxS',
         categories: ['sobrevivencia', 'coop', 'online'],
         isNew: true
     },
@@ -64,7 +64,7 @@ const games = [
         image: 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000068827/cf0ab0f20e7f588ba732a072e34f1ef86cd5430880badf7dd134c7d547bf2d44',
         description: 'Encolhido ao tamanho de uma formiga, você deve sobreviver nos perigos de um quintal. Construa bases, crie ferramentas e enfrente hordas de insetos hostis.',
         requirements: ['Sistema Operacional: Windows 7 (SP1) ou superior', 'Processador: Intel Core i3-3225', 'Memória RAM: 4 GB', 'Placa de Vídeo: NVIDIA GeForce GTX 650 Ti', 'Espaço em Disco: 8 GB'],
-        downloadLink: 'https://example.com/download/grounded',
+        downloadLink: 'https://pixeldrain.com/u/Wub3uapz',
         categories: ['sobrevivencia', 'coop', 'online'],
         isFeatured: true
     },
@@ -205,8 +205,22 @@ function getGameIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('id');
 }
+
+function updateMetaTags(game) {
+    document.title = `${game.title} - Requisitos e Download | PortfolioDosGames`;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+        metaDesc.content = game.description;
+    } else {
+        const newMeta = document.createElement('meta');
+        newMeta.name = "description";
+        newMeta.content = game.description;
+        document.head.appendChild(newMeta);
+    }
+}
 // Função para renderizar os detalhes do jogo
 function renderGameDetails() {
+    
     const gameId = getGameIdFromUrl();
     const game = games.find(g => g.id === gameId);
     const container = document.getElementById('game-details-content');
@@ -216,6 +230,7 @@ function renderGameDetails() {
         return;
     }
 
+    updateMetaTags(game);
     // Gerar o HTML do jogo, mas com um botão de download que abre o modal
     const gameHtml = `
         <div class="game-header">
