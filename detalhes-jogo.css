@@ -1,0 +1,111 @@
+/* Estilos específicos para a página de detalhes do jogo */
+
+.main-content-details {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.game-details-container {
+    width: 100%;
+    max-width: 900px;
+    background-color: #1a273a;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.back-button {
+    display: inline-block;
+    color: #ffd700;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: #fff;
+}
+
+.game-header {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.game-image {
+    width: 300px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #42a94f;
+}
+
+.game-title-info {
+    flex-grow: 1;
+}
+
+.game-title {
+    font-size: 32px;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #42a94f; /* Verde */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.download-button:hover {
+    background-color: #5bb268;
+    transform: scale(1.05);
+}
+
+.game-description h3, .game-requirements h3 {
+    font-size: 20px;
+    color: #ffd700;
+    border-bottom: 2px solid #2a6a51;
+    padding-bottom: 5px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.game-description p {
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.game-requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.game-requirements li {
+    background-color: #121e2e;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    border-left: 3px solid #2a6a51;
+}
+
+@media (max-width: 768px) {
+    .game-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .game-image {
+        width: 100%;
+        height: auto;
+    }
+}
