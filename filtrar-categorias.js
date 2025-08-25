@@ -1,62 +1,88 @@
 // Aguarda o carregamento completo do documento HTML
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Seleciona todos os links de categoria e o input de pesquisa
+    // Seleciona o container principal dos jogos
+    const gameGridContainer = document.querySelector('.game-grid');
     const filterLinks = document.querySelectorAll('.filter-link');
-    const gameCards = document.querySelectorAll('.game-card');
     const searchInput = document.getElementById('search-input');
-    const allGamesContainer = document.querySelector('.game-row');
 
-    // Função para filtrar os jogos com base na categoria e termo de pesquisa
-    function filterAndSearchGames() {
-        const selectedCategory = document.querySelector('.filter-link.active')?.dataset.filter || 'all';
+    // Função que cria e retorna o HTML de um único cartão de jogo
+    function createGameCard(game) {
+        const categoriesString = game.categories.join(' ');
+        return `
+            <a href="detalhes-jogo.html?id=${game.id}" class="game-card" data-category="${categoriesString}">
+                <img src="${game.image}" alt="${game.title}">
+                <div class="game-info">
+                    <h3>${game.title}</h3>
+                    <p>${game.description}</p>
+                    <span class="status-online">Online</span>
+                </div>
+            </a>
+        `;
+    }
+
+    // Função para renderizar um grupo de jogos em uma seção
+    function renderGameSection(title, gamesArray) {
+        if (gamesArray.length === 0) return '';
+
+        const gameCardsHtml = gamesArray.map(createGameCard).join('');
+        return `
+            <h2 class="section-title">${title}</h2>
+            <div class="game-row">${gameCardsHtml}</div>
+        `;
+    }
+
+    // Função principal para filtrar e renderizar os jogos
+    function filterAndRenderGames() {
+        const selectedFilter = document.querySelector('.filter-link.active')?.dataset.filter || 'all';
         const searchTerm = searchInput.value.toLowerCase();
-        const searchHidden = document.getElementById('search-hidden');
-        const searchHidden2 = document.getElementById('search-hidden2');
 
-        gameCards.forEach(card => {
-            const cardCategory = card.dataset.category;
-            const cardTitle = card.querySelector('h3').textContent.toLowerCase();
-
-            const isCategoryMatch = selectedCategory === 'all' || cardCategory === selectedCategory;
-            const isSearchMatch = cardTitle.includes(searchTerm);
-
-            if (isCategoryMatch && isSearchMatch) {
-                searchHidden.style.display = 'block';
-                searchHidden2.style.display = 'block';
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-                searchHidden.style.display = 'none';
-                searchHidden2.style.display = 'none';
-            }
+        // Filtra os jogos com base na categoria e no termo de pesquisa
+        const filteredGames = games.filter(game => {
+            const matchesCategory = selectedFilter === 'all' || game.categories.includes(selectedFilter);
+            const matchesSearch = game.title.toLowerCase().includes(searchTerm) || game.description.toLowerCase().includes(searchTerm);
+            return matchesCategory && matchesSearch;
         });
+
+        // Limpa o container antes de renderizar
+        gameGridContainer.innerHTML = '';
+
+        // Lógica de exibição profissional
+        if (searchTerm) {
+            // Se houver pesquisa, mostra todos os resultados em uma única seção
+            gameGridContainer.innerHTML = renderGameSection('Resultados da Pesquisa', filteredGames);
+        } else if (selectedFilter !== 'all') {
+            // Se um filtro de categoria estiver ativo, mostra os jogos filtrados
+            gameGridContainer.innerHTML = renderGameSection(`Jogos de ${selectedFilter.charAt(0).toUpperCase() + selectedFilter.slice(1)}`, filteredGames);
+        } else {
+            // Se não houver pesquisa ou filtro, mostra as seções de destaque e lançamento
+            const featuredGames = games.filter(game => game.isFeatured);
+            const newGames = games.filter(game => game.isNew);
+            const allGames = games.filter(game => !game.isFeatured && !game.isNew);
+            
+            gameGridContainer.innerHTML += renderGameSection('Destaques da Semana', featuredGames);
+            gameGridContainer.innerHTML += renderGameSection('Chegou Agora!', newGames);
+            gameGridContainer.innerHTML += renderGameSection('Todos os Jogos', allGames);
+        }
     }
 
     // Adiciona evento de clique para os links de categoria
     filterLinks.forEach(link => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
-
-            // Remove a classe 'active' de todos os links e adiciona ao link clicado
             filterLinks.forEach(otherLink => otherLink.classList.remove('active'));
             link.classList.add('active');
-
-            // Limpa o campo de pesquisa ao clicar em um filtro
             searchInput.value = '';
-
-            filterAndSearchGames();
+            filterAndRenderGames();
         });
     });
 
     // Adiciona evento de input para a barra de pesquisa (busca em tempo real)
     searchInput.addEventListener('input', () => {
-        // Remove a classe 'active' de todos os links de filtro ao pesquisar
         filterLinks.forEach(link => link.classList.remove('active'));
-        filterAndSearchGames();
+        filterAndRenderGames();
     });
 
-    // Inicia a página mostrando todos os jogos
-    filterAndSearchGames();
-
+    // Renderiza o conteúdo inicial da página
+    filterAndRenderGames();
 });
