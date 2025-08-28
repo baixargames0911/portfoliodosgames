@@ -37,6 +37,28 @@ body {
     outline: none;
 }
 
+.youtube-button {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o ícone e o texto */
+    text-decoration: none;
+    color: white; /* Cor do texto */
+    background-color: #ff0000; /* Cor de fundo do botão (vermelho do YouTube) */
+    padding: 8px 16px; /* Espaçamento interno */
+    border-radius: 20px; /* Bordas arredondadas */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.youtube-button:hover {
+    background-color: #cc0000; /* Escurece a cor no hover */
+}
+
+.youtube-icon {
+    width: 24px;
+    height: 24px;
+}
+
 .user-info {
     display: flex;
     align-items: center;
