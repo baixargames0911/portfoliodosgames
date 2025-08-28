@@ -97,3 +97,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Renderiza o conteúdo inicial da página
     filterAndRenderGames();
 });
+
+// Função para detectar AdBlocker
+function checkAdBlocker() {
+    // Cria um elemento de teste comum usado para anúncios
+    const adTest = document.createElement('div');
+    adTest.innerHTML = '&nbsp;';
+    adTest.className = 'adsbox'; // Classe comum bloqueada por AdBlockers
+    document.body.appendChild(adTest);
+
+    // Usa um timeout para garantir que o AdBlocker teve tempo de agir
+    setTimeout(() => {
+        // Verifica se o elemento de teste tem altura zero ou está oculto
+        if (adTest.offsetHeight === 0) {
+            // Se for detectado, exibe um modal ou uma mensagem
+            showAdBlockerMessage();
+        }
+        // Remove o elemento de teste
+        adTest.remove();
+    }, 500);
+}
+
+// Função para exibir a mensagem do AdBlocker
+function showAdBlockerMessage() {
+    // Cria o modal
+    const modal = document.createElement('div');
+    modal.className = 'adblock-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <h2>Por favor, desative seu AdBlocker!</h2>
+            <p>Este site é mantido por meio de anúncios. Para continuar acessando nosso conteúdo e nos apoiar, pedimos que desative seu bloqueador de anúncios.</p>
+            <button onclick="document.querySelector('.adblock-modal').style.display='none'">Fechar</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+// Chamada da função ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    // ... seu código atual ...
+
+    // Chama a função de verificação do AdBlocker
+    checkAdBlocker();
+});

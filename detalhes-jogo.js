@@ -590,7 +590,7 @@ const games = [
 {
     "id": "horizon-zero-dawn",
     "title": "Horizon Zero Dawn",
-    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/capsule_616x353.jpg",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1151640/capsule_616x353.jpg?t=1750105817",
     "description": "Em um mundo pós-apocalíptico dominado por máquinas, jogue como a caçadora Aloy e desvende os mistérios do passado. Viaje por um mundo vasto e explore a relação entre a humanidade e o mundo mecânico.",
     "requirements": [
         "Sistema Operacional: Windows 10 (64-bit)",
