@@ -8,17 +8,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função que cria e retorna o HTML de um único cartão de jogo
     function createGameCard(game) {
-        const categoriesString = game.categories.join(' ');
-        return `
-            <a href="detalhes-jogo.html?id=${game.id}" class="game-card" data-category="${categoriesString}">
-                <img src="${game.image}" alt="${game.title}">
-                <div class="game-info">
-                    <h3>${game.title}</h3>
-                    <p>${game.description}</p>
-                </div>
-            </a>
-        `;
-    }
+    const categoriesString = game.categories.join(' ');
+
+    // Verifica se o jogo tem a categoria 'online' ou 'coop'
+    const isOnline = game.categories.includes('online') || game.categories.includes('coop');
+
+    // Cria o HTML do selo se o jogo for online, caso contrário, uma string vazia
+    const onlineBadgeHtml = isOnline ? '<span class="online-badge">Online</span>' : '';
+
+    return `
+        <a href="detalhes-jogo.html?id=${game.id}" class="game-card" data-category="${categoriesString}">
+            <img src="${game.image}" alt="${game.title}">
+            <div class="game-info">
+                <h3>${game.title}</h3>
+                <p>${game.description}</p>
+            </div>
+            ${onlineBadgeHtml}
+        </a>
+    `;
+}
 
     // Função para renderizar um grupo de jogos em uma seção
     function renderGameSection(title, gamesArray) {

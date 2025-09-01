@@ -330,6 +330,26 @@ body {
     color: #f0f0f0;
 }
 
+/* Adicione estas classes ao seu arquivo style.css */
+.game-card {
+    position: relative; /* Isso é crucial para que o .online-badge seja posicionado corretamente */
+    /* Outros estilos do cartão... */
+}
+
+.online-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #28a745; /* Um verde vivo e atraente */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 10; /* Garante que o selo fique acima da imagem */
+}
+
 .adblock-modal p {
     margin-bottom: 20px;
     line-height: 1.6;

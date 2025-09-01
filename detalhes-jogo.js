@@ -118,7 +118,8 @@ const games = [
     "categories": [
       "sobrevivencia",
       "exploracao",
-      "indies"
+      "indies",
+"online"
     ],
     "isNew": true
   },
@@ -237,7 +238,8 @@ const games = [
     "categories": [
       "sobrevivencia",
       "aventura",
-      "cooperativo"
+      "cooperativo",
+"online"
     ],
     "isNew": true
   },
@@ -277,7 +279,8 @@ const games = [
       "acao",
       "aventura",
       "rpg",
-      "sobrevivencia"
+      "sobrevivencia",
+"online"
     ],
     "isNew": true
   },
@@ -297,7 +300,8 @@ const games = [
     "categories": [
       "acao",
       "tatico",
-      "simulacao"
+      "simulacao",
+"online"
     ],
     "isNew": true
   },
@@ -336,7 +340,8 @@ const games = [
     "categories": [
       "corrida",
       "simulacao",
-      "esportes"
+      "esportes",
+"online"
     ],
     "isNew": true
   },
@@ -356,7 +361,8 @@ const games = [
     "categories": [
       "corrida",
       "arcade",
-      "esportes"
+      "esportes",
+      "online"
     ],
     "isNew": false
   },
@@ -396,7 +402,8 @@ const games = [
     "categories": [
       "corrida",
       "mundo-aberto",
-      "esportes"
+      "esportes",
+      "online"
     ],
     "isNew": false
   },
@@ -416,7 +423,8 @@ const games = [
     "categories": [
       "casual",
       "arcade",
-      "acao"
+      "acao",
+            "online"
     ],
     "isNew": true
   },
@@ -457,7 +465,8 @@ const games = [
         "categories": [
             "acao",
             "aventura",
-            "mundo-aberto"
+            "mundo-aberto",
+            "online"
         ],
         "isNew": false
     },
